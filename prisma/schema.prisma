@@ -1,0 +1,284 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model block {
+  id               Int     @id @default(autoincrement())
+  hash             String?
+  height           Int?
+  ts               Int?
+  miner_by         String?
+  total_tx         Int?
+  block_size       Int?
+  parent_hash      String?
+  next_hash        String?
+  merkle_hash      String?
+  difficulty       Int?
+  interval         Int?
+  fee              String?
+  stripped_size    Int?
+  weight           Int?
+  version          String?
+  nonce            String?
+  bits             String?
+  total_amount_in  String?
+  total_amount_out String?
+  block_reward     String?
+  total_diff       String?
+  uncle_reward     String?
+  gas_used         Int?
+  gas_limit        Int?
+  sha_uncles       String?
+  extra_data       String?
+  tx_root_hash     String?
+  total_events     Int?
+  session_id       String?
+  logs_count       Int?
+}
+
+model network {
+  id          Int     @id @default(autoincrement())
+  blockchain  String?
+  network     String?
+  chain_id    String?
+  sub_network String?
+  metadata    String? @default("{}")
+  precision   Int?    @default(18)
+  symbol      String?
+}
+
+model btc_account_tx {
+  id      Int     @id
+  tx_hash String?
+  address String?
+  vin     Int?    @default(-1)
+  vout    Int?    @default(-1)
+}
+
+model btc_block {
+  id               Int     @id @default(autoincrement())
+  hash             String?
+  height           Int?
+  timestamp        Int?
+  miner_by         String?
+  total_tx         Int?
+  block_size       Int?
+  parent_hash      String?
+  next_hash        String?
+  merkle_hash      String?
+  difficulty       Int?
+  interval         Int?
+  fee              String?
+  stripped_size    Int?
+  weight           Int?
+  version          String?
+  nonce            String?
+  bits             String?
+  total_amount_in  String?
+  total_amount_out String?
+  block_reward     String?
+  total_diff       String?
+  uncle_reward     String?
+  gas_used         Int?
+  gas_limit        Int?
+  sha_uncles       String?
+  extra_data       String?
+  tx_root_hash     String?
+  total_events     Int?
+  session_id       String?
+  logs_count       Int?
+}
+
+model btc_tx {
+  id         Int     @id @default(autoincrement())
+  hash       String?
+  block      Int?
+  pos        Int?
+  status     Int?
+  timestamp  Int?
+  fee        Int?
+  amount     Int?
+  from       String?
+  to         String?
+  from_amt   Int?
+  to_amt     Int?
+  extra      Int?
+  from_list  String?
+  to_list    String?
+  size       Int?
+  v_size     Int?
+  weight     Int?
+  sigops     String?
+  amount_in  Int?
+  amount_out Int?
+  fee_per_kb String?
+  script_in  String?
+  script_out String?
+}
+
+model clv_block {
+  id           Int     @id @default(autoincrement())
+  hash         String?
+  height       Int?
+  ts           Int?
+  miner_by     String?
+  total_tx     Int?
+  block_size   Int?
+  parent_hash  String?
+  next_hash    String?
+  merkle_hash  String?
+  difficulty   Int?
+  interval     Int?
+  fee          String?
+  tx_root_hash String?
+  total_events Int?
+  session_id   String?
+  logs_count   Int?
+  version      String?
+}
+
+model dot_block {
+  id          Int     @id @default(autoincrement())
+  hash        String?
+  height      Int?
+  ts          Int?
+  miner_by    String?
+  total_tx    Int?
+  block_size  Int?
+  parent_hash String?
+  next_hash   String?
+  merkle_hash String?
+  difficulty  Int?
+  interval    Int?
+  fee         String?
+}
+
+model eth_block {
+  id           Int     @id @default(autoincrement())
+  hash         String?
+  height       Int?    @unique
+  ts           Int?
+  miner_by     String?
+  total_tx     Int?
+  block_size   Int?
+  parent_hash  String?
+  next_hash    String?
+  merkle_hash  String?
+  difficulty   String?
+  interval     Int?
+  fee          String?
+  nonce        String?
+  block_reward String?
+  total_diff   String?
+  uncle_reward String?
+  gas_used     Int?
+  gas_limit    Int?
+  sha_uncles   String?
+  extra_data   String?
+  tx_root_hash String?
+  tx_internals Int?
+
+  @@index([hash], name: "hash")
+}
+
+model eth_tx {
+  id               Int     @id @default(autoincrement())
+  hash             String?
+  block            Int?
+  pos              Int?
+  status           Int?
+  timestamp        Int?
+  fee              String?
+  value            String?
+  amount           String?
+  from             String?
+  to               String?
+  real_to          String?
+  nonce            Int?
+  gas_price        String?
+  gas_limit        Int?
+  gas_used         Int?
+  input_data       String?
+  interact         Int?
+  transfer_type    Int?
+  is_contract_call Int?
+  contract_created String?
+
+  @@index([block], name: "block")
+  @@index([from], name: "from")
+  @@index([hash], name: "hash")
+  @@index([to], name: "to")
+}
+
+model eth_account {
+  id            Int     @id @default(autoincrement())
+  address       String?
+  token_name    String?
+  token_symbol  String?
+  balance       String?
+  precision     Int?
+  token_address String?
+  last_update   Int?
+
+  @@index([address], name: "address")
+  @@index([token_address], name: "token_addr")
+}
+
+model eth_block_uncle {
+  id        Int     @id @default(autoincrement())
+  height    Int?
+  hash      String?
+  uncle     String?
+  timestamp Int?
+}
+
+model eth_tx_logs {
+  id           Int     @id @default(autoincrement())
+  from         String?
+  to           String?
+  block_hash   String?
+  tx_hash      String?
+  block_number Int?
+  data         String?
+  topic0       String?
+  topic1       String?
+  topic2       String?
+  topic3       String?
+  tx_index     Int?
+  log_index    Int?
+  removed      Int?
+  address      String?
+  log_id       String?
+  name         String?
+
+  @@index([tx_hash], name: "tx_hash")
+}
+
+model eth_contract {
+  id            Int     @id @default(autoincrement())
+  address       String?
+  creater       String?
+  tx_hash       String?
+  logo          String?
+  precision     Int?
+  source        Int?
+  profiles      String? @default("{}")
+  price         String?
+  site          String?
+  name          String?
+  symbol        String?
+  height        Int?
+  contract_type String?
+  content       String?
+  tags          String?
+  balance       String?
+  max_supply    String?
+  holders       Int?
+  transfers     Int?
+  tabs          String?
+}

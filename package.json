@@ -1,0 +1,41 @@
+{
+  "name": "cloverscan",
+  "version": "1.0.0",
+  "description": "colver cross-chain blockchain exploer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-ts": "tsc -w",
+    "cleanDB": "node build/eth/Cleanup.js"
+  },
+  "keywords": [
+    "clover",
+    "blockchain",
+    "explorer",
+    "cross-chain"
+  ],
+  "author": "bit.god@yandex.com",
+  "license": "MIT",
+  "dependencies": {
+    "@polkadot/api": "^3.2.1",
+    "@prisma/client": "^2.13.1",
+    "bignumber.js": "^9.0.1",
+    "bitcoind-rpc": "^0.8.1",
+    "bitcoinjs-lib": "^5.2.0",
+    "dayjs": "^1.9.8",
+    "dotenv": "^8.2.0",
+    "ethers": "^5.0.24",
+    "ioredis": "^4.19.4",
+    "kafkajs": "^1.15.0",
+    "lru-cache": "^6.0.0",
+    "web3": "^1.3.1",
+    "web3-eth": "^1.3.1"
+  },
+  "devDependencies": {
+    "@prisma/cli": "2.13.1",
+    "@types/ioredis": "^4.17.10",
+    "@types/lru-cache": "^5.1.0",
+    "@types/node": "^14.14.16",
+    "typescript": "^4.1.3"
+  }
+}
