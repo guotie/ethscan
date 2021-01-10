@@ -9,7 +9,12 @@ npx prisma generate
 WIP
 
 ## ETH
-almost done
+
+* Block
+* Address, Address Balance, Address Token Balance
+* Contract, Contract info, if contract is ERC20 Token, get token info
+* Transcations
+* Events
 
 ## DOT
 WIP
